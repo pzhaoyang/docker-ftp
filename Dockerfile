@@ -1,8 +1,10 @@
 FROM ubuntu:latest
 
-RUN apt-get update && \
-		apt-get install -y --no-install-recommends vsftpd db-util && \
-		apt-get clean
+RUN \
+sed -i 's/ports\.ubuntu\.com/mirrors\.ustc\.edu\.cn/g' /etc/apt/sources.list && \
+apt-get update && \
+apt-get install -y --no-install-recommends vsftpd db-util && \
+apt-get clean
 
 ENV FTP_USER admin
 ENV FTP_PASS admin
